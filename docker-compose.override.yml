@@ -1,0 +1,33 @@
+version: '3.4'
+
+services:
+  productdb:
+    container_name: productdb
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=admin1234
+      - POSTGRES_DB=Productdb
+    ports:
+      - '5435:5432'
+    volumes: 
+      - postgress_data:/var/lib/postgresql/data
+  pgadmin:
+    container_name: pgadmin
+    environment:
+      # Default email for pgAdmin 4
+      PGADMIN_DEFAULT_EMAIL: admin@email.com
+      # Password for pgAdmin 4
+      PGADMIN_DEFAULT_PASSWORD: adminpassword
+    ports:
+      # Map host port 5050 to container port 80
+      - "5070:80"
+    volumes:
+      # Mount a volume to persist pgAdmin 4 data
+      - pgadmin_data:/var/lib/pgadmin
+  products.api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "10000:80"
+    depends_on: 
+      - productdb
