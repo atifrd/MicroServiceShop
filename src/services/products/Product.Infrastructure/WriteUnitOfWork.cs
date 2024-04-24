@@ -16,11 +16,11 @@ namespace Product.Infrastructure
         {
             _dbContext = dbContext;
         }
-        public IProductWriteRepository ProductReadRepository
+        
+
+        public IProductWriteRepository ProductWriteRepository
         {
             get { return _productWriteRepository ?? new ProductWriteRepository(_dbContext); }
         }
-
-        public IProductWriteRepository ProductWriteRepository => throw new NotImplementedException();
     }
 }

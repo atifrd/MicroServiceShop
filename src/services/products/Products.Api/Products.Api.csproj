@@ -10,6 +10,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="MediatR" Version="12.2.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.18" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.18">
       <PrivateAssets>all</PrivateAssets>
@@ -27,6 +28,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Product.Infrastructure\Product.Infrastructure.csproj" />
+    <ProjectReference Include="..\Products.Application\Products.Application.csproj" />
   </ItemGroup>
 
   <ItemGroup>

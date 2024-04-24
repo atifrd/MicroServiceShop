@@ -2,6 +2,7 @@
 using Product.Domain.Products;
 using Product.Infrastructure;
 using System.Text.Json.Serialization;
+using MediatR;
 
 namespace Products.Api
 {
@@ -33,6 +34,13 @@ namespace Products.Api
 
             builder.Services.AddScoped<IReadUnitOfWork, ReadUnitOfWork>();
             builder.Services.AddScoped<IWriteUnitOfWork, WriteUnitOfWork>();
+            return builder.Services;
+        }
+
+
+        public static IServiceCollection AddApplicationServices(this WebApplicationBuilder builder)
+        {
+            builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assemblies.ApplicationAssembly));
             return builder.Services;
         }
     }
