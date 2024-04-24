@@ -1,4 +1,5 @@
 ﻿using Product.Domain.Products;
+using Product.Infrastructure.Products;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,17 @@ namespace Product.Infrastructure
 {
     public class WriteUnitOfWork : IWriteUnitOfWork
     {
-        IProductWriteRepository IWriteUnitOfWork.ProductWriteRepository => throw new NotImplementedException();
+        private ProductWriteRepository _productWriteRepository;
+        private readonly ProductDbContext _dbContext;
+        public WriteUnitOfWork(ProductDbContext dbContext)
+        {
+            _dbContext = dbContext;
+        }
+        public IProductWriteRepository ProductReadRepository
+        {
+            get { return _productWriteRepository ?? new ProductWriteRepository(_dbContext); }
+        }
+
+        public IProductWriteRepository ProductWriteRepository => throw new NotImplementedException();
     }
 }
