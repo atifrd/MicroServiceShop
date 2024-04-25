@@ -8,12 +8,11 @@
 
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="13.0.1" />
+    <PackageReference Include="FluentValidation" Version="11.9.1" />
     <PackageReference Include="MediatR" Version="12.2.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Products\Commands\Delete\" />
-    <Folder Include="Products\Commands\Update\" />
     <Folder Include="Products\Queries\" />
   </ItemGroup>
 

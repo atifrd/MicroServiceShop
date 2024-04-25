@@ -3,6 +3,8 @@ using Product.Domain.Products;
 using Product.Infrastructure;
 using System.Text.Json.Serialization;
 using MediatR;
+using FluentValidation;
+using Products.Application.Behaviours;
 
 namespace Products.Api
 {
@@ -40,6 +42,12 @@ namespace Products.Api
 
         public static IServiceCollection AddApplicationServices(this WebApplicationBuilder builder)
         {
+            builder.Services.AddValidatorsFromAssembly(Assemblies.ApplicationAssembly);
+
+            builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(UnhandledExceptionBehaviour<,>));
+            builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehaviour<,>));
+
+
             builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assemblies.ApplicationAssembly));
             return builder.Services;
         }
