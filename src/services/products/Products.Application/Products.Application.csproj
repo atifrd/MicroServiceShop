@@ -13,10 +13,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Products\Queries\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\Product.Domain\Product.Domain.csproj" />
   </ItemGroup>
 
